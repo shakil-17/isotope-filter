@@ -1,0 +1,39 @@
+Put the script at the bottom of your markup right after jQuery:-
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+ 
+uase:-
+
+<div class="protfolio-filter text-center py-5">
+  <button data-filter="*">All</button>
+  <button data-filter=".filter-name">APP</button>
+  <button data-filter=".cafilter-name">CARD</button>
+  <button data-filter=".filter-name">WEB</button>
+</div>
+
+<div class="row grid">
+  div class="col-md-6 col-lg-4 grid-item filter-name"></div>
+  div class="col-md-6 col-lg-4 grid-item filter-name"></div>
+  div class="col-md-6 col-lg-4 grid-item filter-name"></div>
+</div>
+
+Call the plugin function and your filter is ready:-
+
+//isotope grid mesonary
+
+var $grid = $('.portfolio-grid').isotope({
+  itemSelector: '.portfolio-item',
+  percentPosition: true,
+  masonry: {
+    // use outer width of grid-sizer for columnWidth
+    columnWidth: '.portfolio-item'
+  }
+})
+
+
+//isotope on click function for filter
+
+$('.protfolio-filter').on( 'click', 'button', function() {
+  var filterValue = $(this).attr('data-filter');
+  $grid.isotope({ filter: filterValue });
+});
